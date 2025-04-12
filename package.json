@@ -1,0 +1,23 @@
+{
+  "name": "electric-emergency-and-disturbance-dashboard-portfolio-project",
+  "version": "1.0.0",
+  "description": "## Purpose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project/issues"
+  },
+  "homepage": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
