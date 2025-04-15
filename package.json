@@ -2,16 +2,17 @@
   "name": "electric-emergency-and-disturbance-dashboard-portfolio-project",
   "version": "1.0.0",
   "description": "## Purpose",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Patrick Himes",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project/issues"
@@ -19,5 +20,11 @@
   "homepage": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project#readme",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
