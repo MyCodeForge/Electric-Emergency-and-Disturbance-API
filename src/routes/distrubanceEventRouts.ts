@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getDisturbanceEvents, getDisturbanceEventsByMonth } from '../controllers/disturbanceEventController';
+import { getDisturbanceEvents, getDisturbanceEventsByMonth,getDisturbanceEventsByRegion, getDisturbanceEventsByEventType } from '../controllers/disturbanceEventController';
 
 const router = Router();
 
@@ -8,6 +8,10 @@ const router = Router();
 router.get('/', getDisturbanceEvents);
 
 router.get('/month/:month', getDisturbanceEventsByMonth);
+
+router.get('/region/:region', getDisturbanceEventsByRegion);
+
+router.get('/eventtype/:event_type', getDisturbanceEventsByEventType);
 
 /* router.patch('/:id');
 
