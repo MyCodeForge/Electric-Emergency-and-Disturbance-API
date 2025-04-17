@@ -1,6 +1,6 @@
 import { RequestHandler, response} from "express";
 import data from '../data/DOE_Electric_Disturbance_Events.json';
-import { DisturbanceEvent } from '../data-type';
+import { DisturbanceEvent } from '../data/data-type';
 
 const disturbanceEventArray: DisturbanceEvent[] = data as DisturbanceEvent[];
 
