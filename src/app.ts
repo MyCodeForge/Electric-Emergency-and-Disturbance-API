@@ -2,7 +2,7 @@
 import express, {Request, Response, NextFunction} from 'express';
 import distrubanceEventRouts from './routes/distrubanceEventRouts';
 import swaggerUI from 'swagger-ui-express';
-import swaggerSpec from './swagger/swagger.config';
+import swaggerSpec from './schemas/openapi.json';
 
 const app = express();
 const PORT = 8080;
@@ -14,7 +14,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use( express.json() );
 
 // setup router
-app.use('/disturbance-events', distrubanceEventRouts);
+app.use('/v1/disturbance-events', distrubanceEventRouts);
 
 // Below route is trigerred when any error is is thrown
 app.use((err: Error, req: Request, res:Response, next: NextFunction) => {

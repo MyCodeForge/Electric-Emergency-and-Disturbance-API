@@ -5,7 +5,8 @@
   "main": "./src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.ts"
+    "start": "nodemon src/app.ts",
+    "schemas:openapi":  "swagger-jsdoc -d src/schemas/definition.yaml src/routes/*.ts 'src/schemas/!(definition).yaml' -o src/schemas/openapi.json"
   },
   "repository": {
     "type": "git",
@@ -20,15 +21,17 @@
   "homepage": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project#readme",
   "dependencies": {
     "express": "^5.1.0",
-    "swagger-jsdoc": "^6.2.8",
+    "express-openapi-validator": "^5.4.9",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+    "copyfiles": "^2.4.1",
     "nodemon": "^3.1.9",
     "openapi-typescript": "^7.6.1",
+    "swagger-jsdoc": "^6.2.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

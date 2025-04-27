@@ -1,0 +1,13 @@
+openapi: 3.0.3 
+info:
+  title: Electric Disturbance Events
+  description: This API retrieves read only data related to electric disturbance events in the U.S.A.
+  version: '1.0'
+externalDocs:
+  description: Find out more about this project
+  url: https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: disturbance-events
+    description: Data on disturbance events.

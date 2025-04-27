@@ -1,0 +1,38 @@
+components:
+  schemas:
+    DisturbanceEvent:
+      type: object
+      properties:
+        month: 
+          type: string
+          examples: ['March']
+        date_event_began: 
+          type: string
+          examples: ['3/11/2016']
+        time_event_began: 
+          type: string
+          examples: ['4:00 AM']
+        date_of_restoration: 
+          type: string
+          examples: ['3/13/2016']
+        time_of_restoration: 
+          type: string
+          examples: ['11:59 AM']
+        area_affected: 
+          type: string
+          examples: ['Washington: Kitsap County, King County, Whatcom County, Island County, Skagit County;']
+        nerc_region: 
+          type: string
+          examples: ['WECC']
+        alert_criteria: 
+          type: string
+          examples: ['Suspected Physical Attack']
+        event_type: 
+          type: string
+          examples: ['Sabotage']
+        demand_loss_in_mw: 
+          type: string
+          examples: ['Unknown']
+        customers_affected: 
+          type: string
+          examples: [415103]

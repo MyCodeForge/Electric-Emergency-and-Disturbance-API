@@ -1,6 +1,6 @@
 import { RequestHandler, response} from "express";
 import data from '../data/DOE_Electric_Disturbance_Events.json';
-import { DisturbanceEvent } from '../data/data-type';
+import { DisturbanceEvent } from '../types/disturbanceEvent';
 
 const disturbanceEventArray: DisturbanceEvent[] = data as DisturbanceEvent[];
 
@@ -43,13 +43,34 @@ export const getDisturbanceEvents: RequestHandler = (req, res, next) => {
 }
 
 export const getDisturbanceEventsByMonth: RequestHandler = (req, res, next) => {
-    res.status(200).send( filterBy(disturbanceEventArray, "month", req.params.month) )
+    const month = req.params.month;
+    
+    if(month) { // check that req.params.month is defined
+        res.status(200).send( filterBy(disturbanceEventArray, "month", month) )
+    } else {
+        //  Handle the case where 'month' is undefined
+        res.status(400).send({ message: "Month parameter is required" }); //  Send a 400 Bad Request
+    }
 }
 
 export const getDisturbanceEventsByRegion: RequestHandler = (req, res, next) => {
-    res.status(200).send( filterBy(disturbanceEventArray, "nerc_region", req.params.region) )
+    const nerc_region = req.params.region;
+    
+    if(nerc_region) { // check that req.params.month is defined
+        res.status(200).send( filterBy(disturbanceEventArray, "nerc_region", nerc_region) )
+    } else {
+        //  Handle the case where 'nerc_region' is undefined
+        res.status(400).send({ message: "Region parameter is required" }); //  Send a 400 Bad Request
+    }
 }
 
 export const getDisturbanceEventsByEventType: RequestHandler = (req, res, next) => {
-    res.status(200).send( filterBy(disturbanceEventArray, "event_type", req.params.event_type) )
+    const event_type = req.params.event_type;
+    
+    if(event_type) { // check that req.params.month is defined
+        res.status(200).send( filterBy(disturbanceEventArray, "event_type", event_type) )
+    } else {
+        //  Handle the case where 'event_type' is undefined
+        res.status(400).send({ message: "Event Type parameter is required" }); //  Send a 400 Bad Request
+    }
 }
