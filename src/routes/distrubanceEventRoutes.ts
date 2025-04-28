@@ -3,7 +3,7 @@ import {
     getDisturbanceEvents, 
     getDisturbanceEventsByMonth,
     getDisturbanceEventsByRegion, 
-    getDisturbanceEventsByEventType 
+    getDisturbanceEventsByEventType
 } from '../controllers/disturbanceEventController';
 
 const router = Router();

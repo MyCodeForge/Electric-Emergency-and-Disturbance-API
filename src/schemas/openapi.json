@@ -246,6 +246,28 @@
           }
         }
       }
+    },
+    "/regions/summary/": {
+      "get": {
+        "tags": [
+          "regions"
+        ],
+        "summary": "Get a high-level overview of regional impact.",
+        "description": "Returns a summary of events by NERC region (e.g., count of events, average demand loss in mw).",
+        "operationId": "getDisturbanceEventsSummaryByRegion",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegionSummary"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -335,6 +357,104 @@
           "code",
           "message"
         ]
+      },
+      "SummaryMetrics": {
+        "type": "object",
+        "properties": {
+          "average": {
+            "type": "number",
+            "format": "double",
+            "example": 100.2,
+            "description": "Average value"
+          },
+          "min": {
+            "type": "number",
+            "example": 50,
+            "description": "Minimum value"
+          },
+          "max": {
+            "type": "number",
+            "example": 150,
+            "description": "Maximum value"
+          }
+        }
+      },
+      "AffectedAreaSummary": {
+        "type": "object",
+        "properties": {
+          "area": {
+            "type": "string",
+            "example": "California",
+            "description": "Affected area name"
+          },
+          "event_count": {
+            "type": "integer",
+            "example": 10,
+            "description": "Number of events in the area"
+          }
+        }
+      },
+      "RegionSummary": {
+        "type": "object",
+        "properties": {
+          "from_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-03-15",
+            "description": "Start date for the summary period"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-03-22",
+            "description": "End date for the summary period"
+          },
+          "total_events": {
+            "type": "integer",
+            "example": 123,
+            "description": "Total number of disturbance events"
+          },
+          "demand_loss_in_mw": {
+            "$ref": "#/components/schemas/SummaryMetrics"
+          },
+          "customers_affected": {
+            "$ref": "#/components/schemas/SummaryMetrics"
+          },
+          "event_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "Cyber Attack",
+              "Severe Weather"
+            ],
+            "description": "List of event types"
+          },
+          "average_downtime": {
+            "type": "number",
+            "format": "double",
+            "example": 24.5,
+            "description": "Average downtime in hours"
+          },
+          "downtime_unit": {
+            "type": "string",
+            "example": "hours",
+            "description": "Unit of downtime measurement"
+          },
+          "affected_areas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AffectedAreaSummary"
+            },
+            "description": "Summary of affected areas"
+          },
+          "no_events": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicates if there were no events in the period"
+          }
+        }
       }
     }
   }

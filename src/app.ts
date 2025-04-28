@@ -1,6 +1,7 @@
 // lets import our packages and initialize our variables
 import express, {Request, Response, NextFunction} from 'express';
-import distrubanceEventRouts from './routes/distrubanceEventRouts';
+import distrubanceEventRoutes from './routes/distrubanceEventRoutes';
+import regionSummaryRoutes from './routes/regionSummaryRoutes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerSpec from './schemas/openapi.json';
 
@@ -14,7 +15,8 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use( express.json() );
 
 // setup router
-app.use('/v1/disturbance-events', distrubanceEventRouts);
+app.use('/v1/disturbance-events', distrubanceEventRoutes);
+app.use('/v1/regions', regionSummaryRoutes);
 
 // Below route is trigerred when any error is is thrown
 app.use((err: Error, req: Request, res:Response, next: NextFunction) => {
