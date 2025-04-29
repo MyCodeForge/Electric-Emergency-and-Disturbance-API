@@ -17,6 +17,37 @@ const router = Router();
  *       summary: Get a high-level overview of regional impact.
  *       description: 'Returns a summary of events by NERC region (e.g., count of events, average demand loss in mw).'
  *       operationId: getDisturbanceEventsSummaryByRegion
+ *       parameters:
+ *         - name: sortBy
+ *           in: query
+ *           required: false
+ *           description: Field used to sort returned data.
+ *           schema:
+ *             type: string
+ *         - name: order
+ *           in: query
+ *           required: false
+ *           description: asc or desc order.
+ *           schema:
+ *             type: string
+ *         - name: offset
+ *           in: query
+ *           required: false
+ *           description: First record of data to return
+ *           schema:
+ *             type: number
+ *         - name: limit
+ *           in: query
+ *           required: false
+ *           description: Number of records of data to return.
+ *           schema:
+ *             type: number
+ *         - name: unit
+ *           in: query
+ *           required: false
+ *           description: Unit of measurement used for Downtime calculations. Accepts s (seconds), m (minutes), h (hours), d (days). Defualts to seconds.
+ *           schema:
+ *             type: string
  *       responses:
  *         '200':
  *           description: OK
@@ -25,6 +56,6 @@ const router = Router();
  *               schema:
  *                 $ref: '#/components/schemas/RegionSummary'
  */
-router.get('/summary/region', getDisturbanceEventsSummaryByRegion);
+router.get('/summary/', getDisturbanceEventsSummaryByRegion);
 
 export default router;
