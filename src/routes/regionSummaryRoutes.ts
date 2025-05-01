@@ -24,24 +24,43 @@ const router = Router();
  *           description: Field used to sort returned data.
  *           schema:
  *             type: string
+ *             default: none
+ *             enum:
+ *               - month
+ *               - date_event_began
+ *               - time_event_began
+ *               - date_of_restoration
+ *               - time_of_restoration
+ *               - area_affected
+ *               - nerc_resion
+ *               - alert_criteria
+ *               - event_type
+ *               - demand_loss_in_mw
+ *               - customers_affected
  *         - name: order
  *           in: query
  *           required: false
  *           description: asc or desc order.
  *           schema:
  *             type: string
+ *             default: none
+ *             enum:
+ *               - asc
+ *               - desc
  *         - name: offset
  *           in: query
  *           required: false
- *           description: First record of data to return
+ *           description: First record of data to return.
  *           schema:
  *             type: number
+ *             default: 0
  *         - name: limit
  *           in: query
  *           required: false
  *           description: Number of records of data to return.
  *           schema:
  *             type: number
+ *             default: 10
  *         - name: unit
  *           in: query
  *           required: false

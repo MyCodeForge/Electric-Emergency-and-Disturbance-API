@@ -1,3 +1,4 @@
+import { off } from 'process';
 import { DisturbanceEvent } from '../types/disturbanceEvent';
 import { RegionSummary, AffectedAreaSummary, SummaryMetrics } from '../types/regionSummary';
 import * as fs from 'fs';
@@ -62,12 +63,15 @@ class DisturbanceEventModel {
         });
     }
 
-    getAllEvents(sortBy?: keyof DisturbanceEvent, order: 'asc'|'desc' = 'asc', offset?:number, limit?:number): DisturbanceEvent[] {
-        //sort
-        let sortedEvents = [...this.disturbanceEvents];
+    private sort<T extends DisturbanceEvent | RegionSummary>(
+        data: T[],
+        sortBy: keyof T,
+        order: string
+    ) {
+        let sortedData = [...data];
 
         if (sortBy){
-            sortedEvents.sort((a, b) => {
+            sortedData.sort((a, b) => {
                 if (a[sortBy] < b[sortBy]) {
                     return order === 'asc' ? -1 : 1;
                 }
@@ -78,24 +82,58 @@ class DisturbanceEventModel {
             });
         }
 
-        // apply pagination
-        if (offset !== undefined && limit !== undefined){
-            return sortedEvents.slice(offset, offset + limit);
-        }
-        
-        return sortedEvents;
+        return sortedData;
     }
 
-    getEventsByMonth(month: string): DisturbanceEvent[] {
+    private page<T extends DisturbanceEvent | RegionSummary>(
+        data: T[],
+        offset: number,
+        limit: number
+    ) {
+        let pagedData = [...data];
+
+        if (offset !== undefined && limit !== undefined){
+            return pagedData.slice(offset, offset + limit);
+        }
+
+        return pagedData;
+    }
+
+    getAllEvents(sortBy?: keyof DisturbanceEvent, order: 'asc'|'desc' = 'asc', offset?:number, limit?:number): DisturbanceEvent[] {
+        let events: DisturbanceEvent[] = [...this.disturbanceEvents];
+
+        //sort
+        if(sortBy)
+            events = this.sort( events, sortBy, order);
+
+        // apply pagination
+        if (offset !== undefined && limit !== undefined)
+            events = this.page( events, offset, limit);
+        
+        return events;
+    }
+
+    getEventsByMonth(month: string, sortBy?: keyof DisturbanceEvent, order: 'asc'|'desc' = 'asc', offset?:number, limit?:number): DisturbanceEvent[] {
         return this.disturbanceEvents.filter(event => event.month === month);
     }
 
-    getEventsByRegion(region: string): DisturbanceEvent[] {
+    getEventsByRegion(region: string, sortBy?: keyof DisturbanceEvent, order: 'asc'|'desc' = 'asc', offset?:number, limit?:number): DisturbanceEvent[] {
         return this.disturbanceEvents.filter(event => event.nerc_region === region);
     }
 
-    getEventsByEventType(type: string): DisturbanceEvent[] {
-        return this.disturbanceEvents.filter(event => event.event_type === type);
+    getEventsByEventType(type: string, sortBy?: keyof DisturbanceEvent, order: 'asc'|'desc' = 'asc', offset?:number, limit?:number): DisturbanceEvent[] {
+        let events: DisturbanceEvent[] = [...this.disturbanceEvents];
+        events = events.filter(event => event.event_type === type);
+        console.log('offset,limit',offset,limit);
+        //sort
+        if(sortBy)
+            events = this.sort( events, sortBy, order);
+
+        // apply pagination
+        if (offset !== undefined && limit !== undefined)
+            events = this.page( events, offset, limit);
+        
+        return events;
     }
 
     //  Add other filtering methods as needed

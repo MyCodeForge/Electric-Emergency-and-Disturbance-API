@@ -18,6 +18,71 @@ const router = Router();
  *     tags:
  *       - disturbance-events 
  *     summary: Get disturbance events.
+ *     parameters:
+ *       - name: month
+ *         in: path
+ *         description: Status values that need to be considered for filter
+ *         required: false
+ *         explode: true
+ *         schema:
+ *           type: string
+ *           default: none
+ *           enum:
+ *             - January
+ *             - February
+ *             - March
+ *             - April
+ *             - May
+ *             - June
+ *             - July
+ *             - August
+ *             - September
+ *             - October
+ *             - November
+ *             - December
+ *       - name: sortBy
+ *         in: query
+ *         required: false
+ *         description: Field used to sort returned data.
+ *         schema:
+ *           type: string
+ *           default: none
+ *           enum:
+ *             - month
+ *             - date_event_began
+ *             - time_event_began
+ *             - date_of_restoration
+ *             - time_of_restoration
+ *             - area_affected
+ *             - nerc_region
+ *             - alert_criteria
+ *             - event_type
+ *             - demand_loss_in_mw
+ *             - customers_affected
+ *       - name: order
+ *         in: query
+ *         required: false
+ *         description: asc or desc order.
+ *         schema:
+ *           type: string
+ *           default: none
+ *           enum:
+ *             - asc
+ *             - desc
+ *       - name: offset
+ *         in: query
+ *         required: false
+ *         description: First record of data to return.
+ *         schema:
+ *           type: number
+ *           default: 0
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         description: Number of records of data to return.
+ *         schema:
+ *           type: number
+ *           default: 10
  *     responses:
  *       '200':
  *         description: OK
@@ -60,6 +125,48 @@ router.get('/', getDisturbanceEvents);
  *             - October
  *             - November
  *             - December
+ *       - name: sortBy
+ *         in: query
+ *         required: false
+ *         description: Field used to sort returned data.
+ *         schema:
+ *           type: string
+ *           default: none
+ *           enum:
+ *             - date_event_began
+ *             - time_event_began
+ *             - date_of_restoration
+ *             - time_of_restoration
+ *             - area_affected
+ *             - nerc_region
+ *             - alert_criteria
+ *             - event_type
+ *             - demand_loss_in_mw
+ *             - customers_affected
+ *       - name: order
+ *         in: query
+ *         required: false
+ *         description: asc or desc order.
+ *         schema:
+ *           type: string
+ *           default: none
+ *           enum:
+ *             - asc
+ *             - desc
+ *       - name: offset
+ *         in: query
+ *         required: false
+ *         description: First record of data to return.
+ *         schema:
+ *           type: number
+ *           default: 0
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         description: Number of records of data to return.
+ *         schema:
+ *           type: number
+ *           default: 10
  *     responses:
  *       '200':
  *         description: OK
@@ -111,6 +218,48 @@ router.get('/month/:month', getDisturbanceEventsByMonth);
  *               - SERC
  *               - TRE
  *               - WECC
+ *         - name: sortBy
+ *           in: query
+ *           required: false
+ *           description: Field used to sort returned data.
+ *           schema:
+ *             type: string
+ *             default: none
+ *             enum:
+ *               - month
+ *               - date_event_began
+ *               - time_event_began
+ *               - date_of_restoration
+ *               - time_of_restoration
+ *               - area_affected
+ *               - alert_criteria
+ *               - event_type
+ *               - demand_loss_in_mw
+ *               - customers_affected
+ *         - name: order
+ *           in: query
+ *           required: false
+ *           description: asc or desc order.
+ *           schema:
+ *             type: string
+ *             default: none
+ *             enum:
+ *               - asc
+ *               - desc
+ *         - name: offset
+ *           in: query
+ *           required: false
+ *           description: First record of data to return.
+ *           schema:
+ *             type: number
+ *             default: 0
+ *         - name: limit
+ *           in: query
+ *           required: false
+ *           description: Number of records of data to return.
+ *           schema:
+ *             type: number
+ *             default: 10
  *       responses:
  *         '200':
  *           description: OK
@@ -169,6 +318,48 @@ router.get('/region/:region', getDisturbanceEventsByRegion);
  *               - Transmission Interruption
  *               - Vandalism
  *               - Weather
+ *         - name: sortBy
+ *           in: query
+ *           required: false
+ *           description: Field used to sort returned data.
+ *           schema:
+ *             type: string
+ *             default: none
+ *             enum:
+ *               - month
+ *               - date_event_began
+ *               - time_event_began
+ *               - date_of_restoration
+ *               - time_of_restoration
+ *               - area_affected
+ *               - nerc_region
+ *               - alert_criteria
+ *               - demand_loss_in_mw
+ *               - customers_affected
+ *         - name: order
+ *           in: query
+ *           required: false
+ *           description: asc or desc order.
+ *           schema:
+ *             type: string
+ *             default: none
+ *             enum:
+ *               - asc
+ *               - desc
+ *         - name: offset
+ *           in: query
+ *           required: false
+ *           description: First record of data to return.
+ *           schema:
+ *             type: number
+ *             default: 0
+ *         - name: limit
+ *           in: query
+ *           required: false
+ *           description: Number of records of data to return.
+ *           schema:
+ *             type: number
+ *             default: 10
  *       responses:
  *         '200':
  *           description: OK
