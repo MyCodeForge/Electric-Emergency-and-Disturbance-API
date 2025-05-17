@@ -17,6 +17,23 @@ class DisturbanceEventModel {
         try {
             const rawData = fs.readFileSync(dataFilePath, 'utf-8');
             this.disturbanceEvents = JSON.parse(rawData);
+            
+            for (let i = 0; i < this.disturbanceEvents.length; i++) {
+                const event = this.disturbanceEvents[i];
+                if(event){
+                    if ( event.date_event_began) {
+                        try {
+                            const date = new Date(event.date_event_began);
+                            event.year = date.getFullYear().toString();
+                        } catch (error) {
+                            console.error("Invalid date string:", event.date_event_began);
+                            event.year = 'unknown';
+                        }
+                    } else {
+                        event.year = 'unknown';
+                    }
+                }
+            }
 
         } catch (error) {
             console.error('Error loading disturbance event data:', error);

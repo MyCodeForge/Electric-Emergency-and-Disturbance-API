@@ -19,27 +19,6 @@ const router = Router();
  *       - disturbance-events 
  *     summary: Get disturbance events.
  *     parameters:
- *       - name: month
- *         in: path
- *         description: Status values that need to be considered for filter
- *         required: false
- *         explode: true
- *         schema:
- *           type: string
- *           default: none
- *           enum:
- *             - January
- *             - February
- *             - March
- *             - April
- *             - May
- *             - June
- *             - July
- *             - August
- *             - September
- *             - October
- *             - November
- *             - December
  *       - name: sortBy
  *         in: query
  *         required: false

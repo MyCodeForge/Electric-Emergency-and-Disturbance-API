@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "## Purpose",
   "main": "./src/app.js",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.ts",
-    "schemas:openapi":  "swagger-jsdoc -d src/schemas/definition.yaml src/routes/*.ts 'src/schemas/!(definition).yaml' -o src/schemas/openapi.json"
+    "dev": "nodemon src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "schemas:openapi": "swagger-jsdoc -d src/schemas/definition.yaml src/routes/*.ts 'src/schemas/!(definition).yaml' -o src/schemas/openapi.json"
   },
   "repository": {
     "type": "git",
@@ -20,11 +24,13 @@
   },
   "homepage": "https://github.com/MyCodeForge/Electric-Emergency-and-Disturbance-Dashboard-Portfolio-Project#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-openapi-validator": "^5.4.9",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",

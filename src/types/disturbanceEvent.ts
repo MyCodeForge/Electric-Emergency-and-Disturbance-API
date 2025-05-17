@@ -1,6 +1,7 @@
 // define schema for DOE_Electric_Disturbance_Events.json file
 export interface DisturbanceEvent {
     month: string,
+    year: string,
     date_event_began: string,
     time_event_began: string,
     date_of_restoration: string,
